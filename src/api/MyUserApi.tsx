@@ -17,6 +17,7 @@ export const useGetMyUser = () => {
   // allows frontend to get the auth0 token from the auth0 server
   const { getAccessTokenSilently } = useAuth0()
 
+  // when the response is returned (returns a javascript obj), we have to define the type or typescript will get confused
   // here we are specifying that this async function will return a promise which resolves to a 'User' object
   // this uses typescript type checking to enforce that the data returned by the async will be of type 'User' which we defined in types.ts file.
   const getMyUserRequest = async (): Promise<User> => {

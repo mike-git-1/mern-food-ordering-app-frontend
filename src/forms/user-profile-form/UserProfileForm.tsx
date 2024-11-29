@@ -17,7 +17,7 @@ import { User } from "@/types"
 import { useEffect } from "react"
 
 // defining front end form validation using zod by defining a schema for our form inputs
-// matches the 'name' attribute of the form input
+// each property must match the 'name' attribute of the form input
 const formSchema = z.object({
   // optional because email field will be read-only and should not be included in any validation
   email: z.string().optional(),
@@ -106,14 +106,11 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
           control={form.control}
           // the key where this form data will be stored
           name="name"
-          // render prop from react-hook-form is a function that automatically receives an object containing the 'field' property,
-          // which is used to connect form inputs with our react-hook-form state
-          // has all the necessary props to integrate the form field with React Hook Form.
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                {/* Field property allows React Hook Form to control the value of this input and track its changes.*/}
+                {/* registers the input with the react-hook-form library */}
                 <Input {...field} className="bg-white" />
               </FormControl>
               {/* displays any mssages contained in 'field' property. E.g If in error state, it will display the errpr message defined in our zod schema
@@ -130,15 +127,12 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
             control={form.control}
             // the key where this form data will be stored
             name="addressLine1"
-            // render prop from react-hook-form is a function that automatically receives an object containing the 'field' property,
-            // which is used to connect form inputs with our react-hook-form state
-            // has all the necessary props to integrate the form field with React Hook Form.
             render={({ field }) => (
               // take up available space
               <FormItem className="flex-1">
                 <FormLabel>Address Line 1</FormLabel>
                 <FormControl>
-                  {/* Field property allows React Hook Form to control the value of this input and track its changes.*/}
+                  {/* registers the input with the react-hook-form library */}
                   <Input {...field} className="bg-white" />
                 </FormControl>
                 {/* displays any mssages contained in 'field' property. E.g If in error state, it will display the errpr message defined in our zod schema
@@ -152,15 +146,12 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
             control={form.control}
             // the key where this form data will be stored
             name="city"
-            // render prop from react-hook-form is a function that automatically receives an object containing the 'field' property,
-            // which is used to connect form inputs with our react-hook-form state
-            // has all the necessary props to integrate the form field with React Hook Form.
             render={({ field }) => (
               // take up available space
               <FormItem className="flex-1">
                 <FormLabel>City</FormLabel>
                 <FormControl>
-                  {/* Field property allows React Hook Form to control the value of this input and track its changes.*/}
+                  {/* registers the input with the react-hook-form library */}
                   <Input {...field} className="bg-white" />
                 </FormControl>
                 {/* displays any mssages contained in 'field' property. E.g If in error state, it will display the errpr message defined in our zod schema
@@ -174,15 +165,12 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
             control={form.control}
             // the key where this form data will be stored
             name="country"
-            // render prop from react-hook-form is a function that automatically receives an object containing the 'field' property,
-            // which is used to connect form inputs with our react-hook-form state
-            // has all the necessary props to integrate the form field with React Hook Form.
             render={({ field }) => (
               // take up available space
               <FormItem className="flex-1">
                 <FormLabel>Country</FormLabel>
                 <FormControl>
-                  {/* Field property allows React Hook Form to control the value of this input and track its changes.*/}
+                  {/* registers the input with the react-hook-form library */}
                   <Input {...field} className="bg-white" />
                 </FormControl>
                 {/* displays any mssages contained in 'field' property. E.g If in error state, it will display the errpr message defined in our zod schema
