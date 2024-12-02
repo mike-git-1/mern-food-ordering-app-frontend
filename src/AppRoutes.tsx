@@ -5,6 +5,7 @@ import AuthCallbackPage from "./pages/AuthCallbackPage"
 import UserProfilePage from "./pages/UserProfilePage"
 import ProtectedRoute from "./auth/ProtectedRoute"
 import ManageRestaurantPage from "./pages/ManageRestaurantPage"
+import SearchPage from "./pages/SearchPage"
 
 const AppRoutes = () => {
   return (
@@ -21,6 +22,16 @@ const AppRoutes = () => {
         }
       />
       <Route path="/auth-callback" element={<AuthCallbackPage />} />
+
+      <Route
+        path="/search/:city"
+        element={
+          <Layout showHero={false}>
+            <SearchPage />
+          </Layout>
+        }
+      />
+
       {/* wrap profile page in a ProtectedRoute - means this route can only be accesed by a logged in user */}
       <Route element={<ProtectedRoute />}>
         <Route

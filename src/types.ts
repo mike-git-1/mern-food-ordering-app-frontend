@@ -34,3 +34,14 @@ export type MenuItem = {
   name: string
   price: number
 }
+
+// properties that we expect to get back when we make a createSeachRequest
+export type RestaurantSearchResponse = {
+  // data will be an array of type 'Restaurant' (defined above)
+  data: Restaurant[]
+  pagination: {
+    total: number
+    page: number
+    pages: number
+  }
+}
