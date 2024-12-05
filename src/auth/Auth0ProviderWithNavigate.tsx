@@ -1,6 +1,6 @@
 // where we'll connect to our Auth0 account
 
-import { Auth0Provider } from "@auth0/auth0-react"
+import { AppState, Auth0Provider } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom"
 
 type Props = {
@@ -31,10 +31,10 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   // callback used to handle what happens when the authentication process is completed and the user is redirected back to the app.
   // in this case, redirect them to the original page they were on (or default /auth-callback)
   // appstate is optional - of type AppState. It holds custom data passed during the authentication process (e.g., a return URL to send the user back to after logging in).
-  const onRedirectCallback = () => {
+  const onRedirectCallback = (appState?: AppState) => {
     // used to navigate to a specific page the user was originally trying to access (returnTo) before being redirected to Auth0 for authentication.
     // If returnTo is not provided, the default redirect URL will be to the /auth-callback path which is our AuthCallbackPage .
-    navigate("/auth-callback")
+    navigate(appState?.returnTo || "/auth-callback")
   }
 
   // wraps our components (the children) inside auth0 so that they can access/use the auth0 hooks
@@ -48,6 +48,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
         audience,
       }}
       // callback that we can define to perform some additional actions when a user is rediercted back to our app (redirect them to the original page they were on)
+      // passes any app state we defined
       onRedirectCallback={onRedirectCallback}
     >
       {children}

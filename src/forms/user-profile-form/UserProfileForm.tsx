@@ -32,7 +32,8 @@ const formSchema = z.object({
 // using zod framework to automatically infer/determine the typescript type based on form schema
 // basically it will detect that all our form inputs should be a string as per our schema.
 // (hover over UserFormData)
-type UserFormData = z.infer<typeof formSchema>
+// export so that it can be used on our CheckoutButton.tsx
+export type UserFormData = z.infer<typeof formSchema>
 
 // definining the prop types
 type Props = {
@@ -42,9 +43,17 @@ type Props = {
   // returns void
   onSave: (userProfileData: UserFormData) => void
   isLoading: boolean
+  title?: string
+  buttonText?: string
 }
 
-const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
+const UserProfileForm = ({
+  onSave,
+  isLoading,
+  currentUser,
+  title = "User Profile", // default value if parent does not provide prop
+  buttonText = "Submit", // default value if parent does not provide prop
+}: Props) => {
   // initialize a form using useForm hook from react-hook
   // this form will be of type UserFormData which has all the fields we want to capture
   // passing in options: zodResolver for validations.
@@ -73,7 +82,7 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
         className="space-y-4 bg-gray-50 rounded-lg md:p-10"
       >
         <div>
-          <h2 className="text-2xl font-bold">User Profile Form</h2>
+          <h2 className="text-2xl font-bold">{title}</h2>
           {/* from shadcn */}
           <FormDescription>
             View and change your profile information here
@@ -187,7 +196,7 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
           <LoadingButton />
         ) : (
           <Button type="submit" className="bg-orange-500">
-            Submit
+            {buttonText}
           </Button>
         )}
       </form>

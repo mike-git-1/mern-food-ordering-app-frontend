@@ -36,8 +36,9 @@ const MenuSection = () => {
         render={() => (
           <FormItem className="flex flex-col gap-2">
             {/* render each menu item component. We're not interacting with each specific element in the array, only using the index  */}
-            {fields.map((_, index) => (
+            {fields.map((item, index) => (
               <MenuItemInput
+                key={item.id}
                 index={index}
                 // removes item @ current index
                 removeMenuItem={() => remove(index)}
