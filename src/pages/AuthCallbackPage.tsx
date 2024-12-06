@@ -17,8 +17,14 @@ const AuthCallbackPage = () => {
   // after a user signs in and gets redirected to this page,
   // initialize a call to our backend to create the user in our db by passing in the user obj
   // runs once immediately once this component loads
+  // The useRef in this case serves to track if the user has already been created, without causing unnecessary re-renders.
+  // It ensures that the createUser function is only called once per user (based on user.sub and user.email),
+  // even if the useEffect hook is triggered multiple times as the user object changes.
   useEffect(() => {
     // '.current' is how we access the actual value of the useRef
+    // sub = what auth0 calls the userId
+    // not possible for a user that already exists in db to create an account on initial mount since Auth0 wouldve flagged to the user that the email is already in use on their
+    // login page and prevented authentication
     // if user has not been created, then go ahead and create the user (ensuring that the useEffect only fires one time)
     if (user?.sub && user?.email && !hasCreatedUser.current) {
       createUser({ auth0Id: user.sub, email: user.email })

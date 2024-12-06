@@ -23,6 +23,7 @@ const Layout = ({ children, showHero = false }: Props) => {
       {showHero && <Hero />}
       {/* responsive container centered horizontally - contains the main content 
       flex-1 to take up available space on screen vertically (since flex-col) */}
+      {/* children = <HomePage> in this case */}
       <div className="container mx-auto flex-1 py-10">{children}</div>
       <Footer />
     </div>

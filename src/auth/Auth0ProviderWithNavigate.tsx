@@ -34,6 +34,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   const onRedirectCallback = (appState?: AppState) => {
     // used to navigate to a specific page the user was originally trying to access (returnTo) before being redirected to Auth0 for authentication.
     // If returnTo is not provided, the default redirect URL will be to the /auth-callback path which is our AuthCallbackPage .
+    // returnTo is a variable that we manually define and set (e.g. set during the checkout process), not set by Auth0
     navigate(appState?.returnTo || "/auth-callback")
   }
 

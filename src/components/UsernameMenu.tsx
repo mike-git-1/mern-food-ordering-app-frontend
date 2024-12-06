@@ -49,7 +49,9 @@ const UsernameMenu = () => {
             className="flex flex-1 font-bold bg-orange-500"
             // when clicked, calls auth0 will logout the user
             // isAuthenticated will then change to false, and the navbar will update
-            onClick={() => logout()}
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
           >
             Log Out
           </Button>
